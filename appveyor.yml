@@ -1,0 +1,22 @@
+version: 1.0.{build}
+image: Visual Studio 2022
+skip_branch_with_pr: false
+
+# See: https://www.appveyor.com/docs/build-configuration/
+
+# 1. INIT
+init:
+  - cmd: git config --global core.autocrlf true
+  - cmd: dotnet --version # --info is more verbose but also helpful
+
+# 2. INSTALL
+install:
+  - cmd: dotnet restore --verbosity minimal
+
+# 3. BUILD
+build_script:
+  - cmd: dotnet build
+
+# 4. TEST
+test_script:
+  - dotnet test 
