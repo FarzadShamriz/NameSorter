@@ -7,10 +7,16 @@ Main file: Program.cs
 Helpers:
   1. FileHelper.cs
   2. PersonHelper.cs
+  3. ConsoleLogger : IConsoleLogger
 Models: 
   1. FileValidatorResult.cs
   2. Models: 
 
+## Logger class
+  A consoleLogger class added to handle all the UI writelines.
+
+## Documentation
+  Documents added to the classes, methods and lines of code.
 
 ### How to execute
 
