@@ -3,6 +3,7 @@ using NameSorter.Models;
 
 
 
+IConsoleLogger consoleLogger = new ConsoleLogger();
 try
 {
     //Check if args are entered correctly
@@ -13,17 +14,16 @@ try
 
         if (fileValidationResult.FileIsValid)
         {
-            Console.WriteLine("================================", ConsoleColor.Green);
-            Console.WriteLine(fileValidationResult.ValidatorMessage, ConsoleColor.Green);
-            Console.WriteLine("================================", ConsoleColor.Green);
+            
+            consoleLogger.log(fileValidationResult.ValidatorMessage, IConsoleLogger.MessageType.INFO);
+
+
 
             List<Person> serializedPersonList = FileHelper.SerializeFileToPersonList(inputFilePath);
 
             if (serializedPersonList.Count < 1)
             {
-                Console.WriteLine("================================", ConsoleColor.Red);
-                Console.WriteLine("File is empty.", ConsoleColor.Red);
-                Console.WriteLine("================================", ConsoleColor.Red);
+                consoleLogger.log("File is empty.", IConsoleLogger.MessageType.ERROR);
             }
             else
             {
@@ -36,26 +36,26 @@ try
                     var fullName = $"{person.FirstName} {person.LastName}";
                     if (!string.IsNullOrEmpty(fullName.Trim()))
                     {
-                        Console.WriteLine(fullName);
+                        consoleLogger.log(fullName, IConsoleLogger.MessageType.INFO);
                     }
 
                 }
                 Console.WriteLine("===================================================", ConsoleColor.Green);
             }
-
-
+        }
+        else
+        {
+            consoleLogger.log("Wrong file path.", IConsoleLogger.MessageType.WARNING);
         }
     }
     else
     {
-        Console.WriteLine("================================", ConsoleColor.Red);
-        Console.WriteLine("Wrong command.", ConsoleColor.Red);
-        Console.WriteLine("================================", ConsoleColor.Red);
+        consoleLogger.log("Wrong command.", IConsoleLogger.MessageType.WARNING);
     }
 }
 catch (Exception e)
 {
-    Console.WriteLine(e.ToString());
+    consoleLogger.log(e.Message, IConsoleLogger.MessageType.ERROR);
 }
 
 
