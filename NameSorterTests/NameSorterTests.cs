@@ -4,10 +4,10 @@ using NameSorter.Models;
 namespace NameSorterTests
 {
     [TestClass]
-    public class UnitTest1
+    public class NameSorterTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void SortTest1()
         {
             List<Person> persons = new List<Person>();
             persons.Add(new Person(1, "Janet Parsons", "Janet", "Parsons"));
