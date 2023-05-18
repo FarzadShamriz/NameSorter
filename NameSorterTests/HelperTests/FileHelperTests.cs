@@ -7,11 +7,19 @@ namespace NameSorterTests.HelperTests
     [TestClass]
     public class FileHelperTests
     {
+        private List<Person> personsTestList = new List<Person>();
 
         [TestInitialize]
         public void init()
         {
             //Prepare the requirements here
+            personsTestList.Add(new Person(1, "Janet Parsons", "Janet", "Parsons"));
+            personsTestList.Add(new Person(2, "Adonis Julius Archer", "Adonis Julius", "Archer"));
+            personsTestList.Add(new Person(3, "Marin Alvarez", "Marin", "Alvarez"));
+            personsTestList.Add(new Person(4, "Marin Alvarezz", "Marin", "Alvarezz"));
+            personsTestList.Add(new Person(5, "ZMarin Alvarezz", "Marin", "Alvarezz"));
+            personsTestList.Add(new Person(6, "", "", ""));
+            personsTestList.Add(new Person(7, "Marin zlvarezz", "Marin", "Alvarezz"));
         }
 
         #region ValidateFileByPath
@@ -49,7 +57,11 @@ namespace NameSorterTests.HelperTests
         #endregion
 
         #region WritePersonListInFile
-
+        [TestMethod]
+        public void WriteListInAFileTest()
+        {
+            Assert.IsTrue(FileHelper.WritePersonListInFile(personsTestList));
+        }
         #endregion
 
     }

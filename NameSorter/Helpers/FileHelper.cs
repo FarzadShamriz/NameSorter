@@ -89,8 +89,11 @@ namespace NameSorter.Helpers
                 foreach (Person person in personList)
                 {
                     var fullName = $"{person.FirstName} {person.LastName}";
-                    Console.WriteLine(fullName);
-                    sortedFile.WriteLine(fullName);
+                    if (!string.IsNullOrEmpty(fullName.Trim()))
+                    {
+                        sortedFile.WriteLine(fullName);
+                    }
+                    
                 }
 
             }

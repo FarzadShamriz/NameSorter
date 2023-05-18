@@ -5,11 +5,11 @@ using NameSorter.Models;
 
 try
 {
+    //Check if args are entered correctly
     if (Environment.GetCommandLineArgs().Length > 1)
     {
         string inputFilePath = Environment.GetCommandLineArgs()[1];
         var fileValidationResult = FileHelper.ValidateFileByPath(inputFilePath);
-        Console.WriteLine(inputFilePath);
 
         if (fileValidationResult.FileIsValid)
         {
@@ -29,6 +29,18 @@ try
             {
                 List<Person> sortedPersonList = PersonHelper.SortPersonListByLastNameThenFirstName(serializedPersonList);
                 FileHelper.WritePersonListInFile(sortedPersonList);
+
+                Console.WriteLine("=============== Sorted Full Names =================", ConsoleColor.Green);
+                foreach (Person person in sortedPersonList)
+                {
+                    var fullName = $"{person.FirstName} {person.LastName}";
+                    if (!string.IsNullOrEmpty(fullName.Trim()))
+                    {
+                        Console.WriteLine(fullName);
+                    }
+
+                }
+                Console.WriteLine("===================================================", ConsoleColor.Green);
             }
 
 
