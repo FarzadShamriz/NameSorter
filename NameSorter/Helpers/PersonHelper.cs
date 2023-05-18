@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace NameSorter.Helpers
 {
+    /// <summary>
+    /// This class is responsible for all the person and person list process
+    /// </summary>
     public class PersonHelper
     {
-
-        public static List<Person> SortPersonListByLastNameThenFirstName(List<Person> persons)
+        /// <summary>
+        /// This method is sorting the person list based on first name then last name
+        /// Validations checked before catching this step
+        /// </summary>
+        /// <param name="personList">List of person objects to sort</param>
+        /// <returns>Return the sorted list of the persons</returns>
+        public static List<Person> SortPersonListByLastNameThenFirstName(List<Person> personList)
         {
-            return persons.OrderBy(person => person.LastName).ThenBy(person => person.FirstName).ToList();
+            return personList.OrderBy(person => person.LastName).ThenBy(person => person.FirstName).ToList();
         }
 
     }
