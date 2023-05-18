@@ -7,7 +7,7 @@ namespace NameSorterTests
     public class NameSorterTests
     {
         [TestMethod]
-        public void SortTest1()
+        public void Scenario1()
         {
             List<Person> persons = new List<Person>();
             persons.Add(new Person(1, "Janet Parsons", "Janet", "Parsons"));

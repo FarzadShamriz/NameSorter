@@ -1,4 +1,5 @@
-﻿using NameSorter.Helpers;
+﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.ObjectModel;
+using NameSorter.Helpers;
 using NameSorter.Models;
 
 namespace NameSorterTests.HelperTests
@@ -6,6 +7,14 @@ namespace NameSorterTests.HelperTests
     [TestClass]
     public class FileHelperTests
     {
+
+        [TestInitialize]
+        public void init()
+        {
+            //Prepare the requirements here
+        }
+
+        #region ValidateFileByPath
         [TestMethod]
         public void ValidateFileByEmptyPath()
         {
@@ -19,9 +28,29 @@ namespace NameSorterTests.HelperTests
         }
 
         [TestMethod]
+        public void ValidateFileByWringFileExt()
+        {
+            Assert.IsFalse(FileHelper.ValidateFileByPath("./name-sorter.dll").FileIsValid);
+        }
+
+        [TestMethod]
         public void ValidateFileByCorrectPath()
         {
             Assert.IsTrue(FileHelper.ValidateFileByPath("./input.txt").FileIsValid);
         }
+        #endregion
+
+        #region SerializeFileToPersonList
+        [TestMethod]
+        public void SerializeTheFileToPersonList()
+        {
+            Assert.AreEqual(13, FileHelper.SerializeFileToPersonList("./input.txt").Count());
+        }
+        #endregion
+
+        #region WritePersonListInFile
+
+        #endregion
+
     }
 }
